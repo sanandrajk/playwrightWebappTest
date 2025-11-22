@@ -20,6 +20,10 @@ public DashboardLocators(Page page){
     this.dashboardChurnedUsers = page.getByText("Churned Users");
 }
 
+public String dashboardText(){
+    return dashboardOwnerMetrics.textContent();
+}
+
 public void clickTotalUser(){
 dashboardTotalUsers.click();
 }

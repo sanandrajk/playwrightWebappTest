@@ -5,14 +5,18 @@ import org.testng.annotations.Test;
 
 import com.example.beforeMethod.SetupBrowser;
 
+import dashboard.DashboardLocators;
+
 public class LoginTest extends SetupBrowser {
 
     public static String expectedErrorText = "Invalid username or password. Please try again.";
     private LoginLocators locate;
+    private DashboardLocators dash;
 
     @BeforeMethod
     public void init() {
         locate = new LoginLocators(page); // Now page is initialized
+        dash = new DashboardLocators(page);
     }
 
     @Test
@@ -20,6 +24,8 @@ public class LoginTest extends SetupBrowser {
         locate.enterPhoneNumber("admin", "admin123");
         locate.clickLogin();
         Thread.sleep(3000);
+        String actualText = dash.dashboardText();
+        Assert.assertEquals("Owner Metrics", actualText);
     }
 
     @Test
